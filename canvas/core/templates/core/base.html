@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title%}{% endblock %} | Canvas</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom CSS */
+    body {
+      background-color: #f0f5f9; /* Light blue background */
+    }
+    nav {
+      background-color: #ffed4a; /* Yellow navbar */
+      border-radius: 15px; /* Rounded corners */
+      padding: 10px; /* Padding */
+    }
+    nav a {
+      color: #1a202c; /* Dark blue text */
+      margin-right: 20px; /* Space between links */
+    }
+    nav .search-bar {
+      width: 150px; /* Adjust width as needed */
+      padding: 4px;
+      margin-left: auto; /* Pushes search bar to the right */
+      border: 1px solid #1a202c; /* Dark blue border */
+      border-radius: 5px; /* Rounded corners */
+    }
+    .product {
+      background-color: #ffffff; /* White product cards */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+      transition: box-shadow 0.3s ease; /* Transition effect */
+    }
+    .product:hover {
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+    }
+    .product h2 {
+      color: #1a202c; /* Dark blue heading */
+    }
+    .product p {
+      color: #4a5568; /* Gray text */
+    }
+  </style>
+</head>
+<body>
+  <nav class="flex items-center justify-between bg-yellow-400">
+    <div class="logo">
+      <a href="/" class="text-2xl text-blue-900">Canvas</a>
+    </div>
+    <div class="menu flex items-center">
+      <a href="{% url 'about' %}" class="text-blue-900"> About Us </a>
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'myaccount' %}" class="text-blue-900"> My Account </a>
+      {% endif %}
+      <a class="text-blue-900"> Signup</a>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+    </div>
+  </nav>
+  <div class="max-w-4xl mx-auto">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
